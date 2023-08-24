@@ -39,7 +39,7 @@ h1 {
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 1px solid #21354710;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
@@ -59,9 +59,25 @@ button:focus-visible {
 }
 
 ul {
+  padding: 0;
+  position: relative;
+}
+
+li {
+  color: #1a1a1a;
+  border-left: solid 5px #bfbfc2;
+  border-right: solid 5px #bfbfc2;
+  /* border-radius: 20px 0 20px 0; */
+  background-color: #f9f9f9;
+  margin-bottom: 5px;
+  line-height: 1.5;
+  padding: 0.5em;
   list-style: none;
 }
 
+li:hover {
+  border-color: #646cff;
+}
 
 .card {
   padding: 2em;
