@@ -1,6 +1,6 @@
 import { useFrame } from "@react-three/fiber";
 import * as THREE from 'three'
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 export default function Box(props: JSX.IntrinsicElements['mesh']) {
     const ref = useRef<THREE.Mesh>(null!)
