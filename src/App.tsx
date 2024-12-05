@@ -1,17 +1,23 @@
 import { Canvas } from "@react-three/fiber"
-import Box from "./components/Box"
+import * as THREE from 'three'
+import Bird from "./components/Bird"
+import camera from "./helper/three/camera"
+import Floor from "./components/Floor"
 
 function App() {
 
   return (
     <>
       <div id="canvas-container">
-        <Canvas>
-          <ambientLight intensity={Math.PI / 2} />
-          <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} />
-          <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
-          <Box position={[-1.2, 0, 0]} />
-          <Box position={[1.2, 0, 0]} />
+        <Canvas
+          camera={camera}
+          shadows={true}
+        >
+          {/* <directionalLight args={[0xffffff, 1]} position={[-50, 50, 50]} castShadow /> */}
+          {/* <directionalLight args={[0xff0000, 0.9]} position={[30, 80, 50]} castShadow/> */}
+          <ambientLight />
+          <Floor receiveShadow />
+          <Bird castShadow />
         </Canvas>
       </div>
     </>
