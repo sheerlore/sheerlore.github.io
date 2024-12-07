@@ -6,9 +6,9 @@ export default function Floor(props: JSX.IntrinsicElements['mesh']) {
     const meshRef = useRef<THREE.Mesh>(null!)
 
     return (
-        <mesh {...props} ref={meshRef} position={[0, -33, 0]} rotation={[-Math.PI/2, 0, 0]}>
-            <planeGeometry args={[1000, 1000]} />
-            <meshLambertMaterial  />
+        <mesh {...props} ref={meshRef} rotation-x={-Math.PI / 2} >
+            <planeGeometry args={[100, 100]} />
+            {/* <meshStandardMaterial /> */}
         </mesh>
     )
 }

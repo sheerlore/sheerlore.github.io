@@ -1,27 +1,32 @@
-import { useFrame } from "@react-three/fiber";
 import * as THREE from 'three'
-import { useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState} from "react";
+import { useFrame } from '@react-three/fiber';
 
 export default function Box(props: JSX.IntrinsicElements['mesh']) {
     const ref = useRef<THREE.Mesh>(null!)
-    const [hovered, hover] = useState(false)
-    const [clicked, click] = useState(false)
+    // const [rotate, setRotate] = useState(false)
+    const [count, setCount] = useState(0)
+    const geometry = useMemo(
+        () => [new THREE.BoxGeometry(), new THREE.SphereGeometry(0.785398)],
+        []
+    )
 
-    useFrame(() => (ref.current.rotation.y += 0.03))
-    useFrame(() => (ref.current.rotation.x += 0.05))
+    useEffect(() => {
+        console.log(ref.current.geometry.uuid)
+    })
+
+    useFrame((_, delta) => {
+        ref.current.rotation.x += 1 * delta
+        ref.current.rotation.y += 0.5 * delta
+    })
 
     return (
         <mesh
             {...props}
             ref={ref}
-            scale={clicked ? 1.5 : 1}
-            onClick={() => click(!clicked)}
-            onPointerOver={() => hover(true)}
-            onPointerOut={() => hover(false)}
+            onPointerDown={() => setCount((count + 1) % 2)}
+            geometry={geometry[count]}
         >
-            <boxGeometry args={[1, 1, 1]} />
-            {/* <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} /> */}
-            <meshBasicMaterial color={hovered ? 'hotpink': 'white'} />
         </mesh>
     )
 }
